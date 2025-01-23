@@ -1,22 +1,25 @@
 import copy
 
 def spread_fire(grid):
-    grid_size = len(grid)
-    update_grid = copy.deepcopy(grid)
-    for i in range(grid_size):
-        for j in range(grid_size):
+    rows = len(grid)
+    cols = len(grid[0]) if rows > 0 else 0
+
+    updated_grid = copy.deepcopy(grid)
+
+    for i in range(rows):
+        for j in range(cols):
             if grid[i][j] == 1:
                 neighbors = []
                 if i > 0:
-                    neighbors.append(grid[i - 1][j]
-                if i < grid_size - 1:
+                    neighbors.append(grid[i - 1][j])
+                if i < rows - 1:
                     neighbors.append(grid[i + 1][j])
                 if j > 0:
-                    neighbors.append(grid[i ][j - 1])
-                if j < grid_size - 1:
+                    neighbors.append(grid[i][j - 1])
+                if j < cols - 1:
                     neighbors.append(grid[i][j + 1])
                 if 2 in neighbors:
-                    update_grid[i][j] = 2
+                    updated_grid[i][j] = 2
 
-    return update_grid
+    return updated_grid
 
